@@ -129,7 +129,7 @@ export const socialMedia = [
   {
     id: 2,
     img: "/wha.svg",
-    url: "",
+    url: "https://wa.me/82169893296",
   },
   {
     id: 3,
