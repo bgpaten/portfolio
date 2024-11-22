@@ -113,11 +113,24 @@ const Portfolio = () => {
                 >
                   <img src="/bg.png" alt="bgimg" />
                 </div>
-                <img
-                  src={item.imgUrl}
-                  alt="cover"
-                  className="z-10 absolute bottom-0"
-                />
+
+                {/* Cek apakah ini video atau gambar */}
+                {item.fileType === "video" ? (
+                  <video
+                    className="z-10 absolute bottom-0 w-full h-full object-cover lg:rounded-3xl"
+                    controls
+                    autoPlay
+                    muted
+                    loop
+                    src={item.fileUrl}
+                  />
+                ) : (
+                  <img
+                    src={item.imgUrl}
+                    alt="cover"
+                    className="z-10 absolute bottom-0"
+                  />
+                )}
               </div>
 
               <h1 className="font-bold lg:text-2xl md:text-xl text-base line-clamp-1">
@@ -153,9 +166,14 @@ const Portfolio = () => {
                 </div>
 
                 <div className="flex justify-center items-center">
-                  <Link href={item.link} target="_blank">
+                  <Link
+                    href={item.fileType === "video" ? item.fileUrl : item.link}
+                    target="_blank"
+                  >
                     <p className="flex lg:text-xl md:text-xs text-sm text-purple cursor-pointer">
-                      Check Live Site
+                      {item.fileType === "video"
+                        ? "Watch Video"
+                        : "Check Live Site"}
                     </p>
                   </Link>
                   <FaLocationArrow className="ms-3" color="#CBACF9" />
