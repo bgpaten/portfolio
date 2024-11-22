@@ -5,6 +5,26 @@ import { FaLocationArrow } from "react-icons/fa6";
 import { PinContainer } from "./ui/Pin";
 import Link from "next/link";
 
+// Fungsi untuk memformat tanggal
+const formatDate = (dateString: string): string => {
+  const [day, month, year] = dateString.split(" ")[0].split("/"); // Pisahkan tanggal, bulan, tahun
+  const months = [
+    "Januari",
+    "Februari",
+    "Maret",
+    "April",
+    "Mei",
+    "Juni",
+    "Juli",
+    "Agustus",
+    "September",
+    "Oktober",
+    "November",
+    "Desember",
+  ];
+  return `${day} ${months[parseInt(month, 10) - 1]} ${year}`;
+};
+
 const Portfolio = () => {
   const itemsPerPage = 10;
   const [currentPage, setCurrentPage] = useState(1);
@@ -85,7 +105,7 @@ const Portfolio = () => {
             className="sm:h-[41rem] h-[32rem] lg:min-h-[32.5rem] flex items-center justify-center sm:w-[570px] w-[80vw]"
             key={item.id}
           >
-            <PinContainer title={item.link} href={item.link}>
+            <PinContainer title={formatDate(item.createdAt)} href={item.link}>
               <div className="relative flex items-center justify-center sm:w-[570px] w-[80vw] overflow-hidden sm:h-[40vh] h-[30vh] mb-10">
                 <div
                   className="relative w-full h-full overflow-hidden lg:rounded-3xl"
